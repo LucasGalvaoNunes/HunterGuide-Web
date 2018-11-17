@@ -17,9 +17,12 @@ class CreateGuidesTable extends Migration
             $table->increments('id');
             $table->integer('fkUsers')->unsigned();
             $table->foreign('fkUsers')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('fkGames')->unsigned();
+            $table->foreign('fkGames')->references('id')->on('games')->onDelete('cascade');
+            $table->integer('visualizations')->nullable()->comment('Is so much visualization this guide receive!');
             $table->string('title', 100)->nullable();
             $table->longText('text');
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }
