@@ -2,6 +2,9 @@
 
 namespace App\HunterGuide\Users;
 
+use App\HunterGuide\GamesFavorites\GamesFavorites;
+use App\HunterGuide\Guides\Guides;
+use App\HunterGuide\GuidesFavorites\GuidesFavorites;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,7 +20,7 @@ use Laravel\Passport\HasApiTokens;
  * @property string api_token
  *
  * Class Users
- * @package App\Models
+ * @package App\HunterGuide\Users
  */
 class Users extends Authenticatable
 {
@@ -35,4 +38,24 @@ class Users extends Authenticatable
         'api_token'
     ];
 
+    /**
+     * @return GamesFavorites[]|\Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function gamesFavorites(){
+        return $this->hasMany(GamesFavorites::class, 'fkUsers', 'id');
+    }
+
+    /**
+     * @return GuidesFavorites[]|\Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function guidesFavorites(){
+        return $this->hasMany(GuidesFavorites::class, 'fkUsers', 'id');
+    }
+
+    /**
+     * @return Guides[]|\Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function guides(){
+        return $this->hasMany(Guides::class, 'fkUsers', 'id');
+    }
 }

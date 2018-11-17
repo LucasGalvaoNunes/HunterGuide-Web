@@ -14,7 +14,7 @@ use Jsdecena\Baserepo\BaseRepositoryInterface;
 
 interface UsersRepositoryInterface extends BaseRepositoryInterface
 {
-    public function login(array $param) : Users;
+    public function login(array $param) : ?Users;
 
     public function createUser(array $param) : Users;
 

@@ -10,6 +10,7 @@ use App\HunterGuide\Users\Requests\UsersCreate;
 use App\HunterGuide\Users\Requests\UsersLogin;
 use App\HunterGuide\Users\Requests\UsersUpdate;
 use App\HunterGuide\Users\Users;
+use Faker\Factory;
 use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
@@ -17,10 +18,15 @@ class UsersController extends Controller
     protected $user;
 
     public function __construct(){
-        $this->middleware('auth:api', ['except' => ['login', 'create']]);
         if(auth()->guard('api')->check()){
             $this->user = auth()->guard('api')->user();
         }
+    }
+
+    public function profile(){
+        return Util::apiResponse(true, "User recovery!",
+            $this->user, null, EnumResponse::RESPONSE_OK);
+
     }
 
     public function login(UsersLogin $request){

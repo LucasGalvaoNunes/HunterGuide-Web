@@ -15,15 +15,10 @@ class CreateGuidesStepsTable extends Migration
     {
         Schema::create('guides_steps', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('fkGuidesSteps')->unsigned()->nullable();
-            $table->foreign('fkGuidesSteps')->references('id')->on('guides_steps')->onDelete('cascade');
-            $table->integer('fkGames')->unsigned()->nullable();
-            $table->foreign('fkGames')->references('id')->on('games')->onDelete('cascade');
+            $table->integer('fkSteps')->unsigned()->nullable();
+            $table->foreign('fkSteps')->references('id')->on('steps')->onDelete('cascade');
             $table->integer('fkGuides')->unsigned()->nullable();
             $table->foreign('fkGuides')->references('id')->on('guides')->onDelete('cascade');
-            $table->string('name', 100);
-            $table->string('pictureLink', 100);
-
             $table->softDeletes();
             $table->timestamps();
         });
