@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\HunterGuide\GuidesSteps;
 
+use App\HunterGuide\Games\Games;
+use App\HunterGuide\Guides\Guides;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -14,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string pictureLink
  *
  * Class GuidesSteps
- * @package App\Models
+ * @package App\HunterGuide\GuidesSteps
  */
 class GuidesSteps extends Model
 {
@@ -24,10 +26,8 @@ class GuidesSteps extends Model
 
     protected $fillable = [
         'id',
-        'fkGuidesSteps',
-        'fkGames',
+        'fkSteps',
         'fkGuides',
-        'name',
-        'pictureLink'
     ];
+
 }

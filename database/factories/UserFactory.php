@@ -13,12 +13,12 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
+$factory->define(\App\HunterGuide\Users\Users::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
-        'remember_token' => str_random(10),
+        'lastName' => $faker->lastName,
+        'aboutMe' => $faker->text(30),
+        'userName' => $faker->userName,
+        'password' => '$2y$10$84M1cBrCMtQn2diWA8.KFu41nzi/gFZbwKEk7waGGo9SY8Gtv0K36',
     ];
 });

@@ -32,7 +32,7 @@ class UsersRepository extends BaseRepository implements UsersRepositoryInterface
      * @param array $param
      * @return Users
      */
-    public function login(array $param): Users
+    public function login(array $param): ?Users
     {
         if(Auth::attempt(['userName' => $param['userName'], 'password' => $param['password']])){
 
@@ -83,5 +83,6 @@ class UsersRepository extends BaseRepository implements UsersRepositoryInterface
             throw new \Exception($e->getMessage(), 500, $e);
         }
     }
+
 
 }

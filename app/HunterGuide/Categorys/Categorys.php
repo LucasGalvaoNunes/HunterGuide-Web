@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\HunterGuide\Categorys;
 
+use App\HunterGuide\Games\Games;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string name
  *
  * Class Categorys
- * @package App\Models
+ * @package App\HunterGuide\Categorys
  */
 class Categorys extends Model
 {
@@ -22,4 +23,12 @@ class Categorys extends Model
         'id',
         'name'
     ];
+
+    /**
+     * @return Games[]|\Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function games(){
+        return $this->belongsToMany(Games::class, 'games_categorys', 'fkCategorys', 'fkGames')
+            ->has('guides');
+    }
 }

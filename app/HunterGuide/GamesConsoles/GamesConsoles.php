@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\HunterGuide\GamesConsoles;
 
+use App\HunterGuide\Consoles\Consoles;
+use App\HunterGuide\Games\Games;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -11,7 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer fkConsoles
  *
  * Class GamesConsoles
- * @package App\Models
+ * @package App\HunterGuide\GamesConsoles
  */
 class GamesConsoles extends Model
 {
@@ -24,4 +26,18 @@ class GamesConsoles extends Model
         'fkGames',
         'fkConsoles'
     ];
+
+    /**
+     * @return Games|\Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function games(){
+        return $this->belongsTo(Games::class, 'fkGames');
+    }
+
+    /**
+     * @return Consoles|\Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function consoles(){
+        return $this->belongsTo(Consoles::class, 'fkConsoles');
+    }
 }
