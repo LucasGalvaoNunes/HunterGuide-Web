@@ -38,6 +38,10 @@ class Users extends Authenticatable
         'api_token'
     ];
 
+    protected $hidden = [
+        'password'
+    ];
+
     /**
      * @return GamesFavorites[]|\Illuminate\Database\Eloquent\Relations\HasMany
      */

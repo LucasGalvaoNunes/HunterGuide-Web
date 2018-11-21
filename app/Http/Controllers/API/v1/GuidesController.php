@@ -45,7 +45,7 @@ class GuidesController extends Controller
                 null, null, EnumResponse::RESPONSE_NOT_FOUND);
         }
 
-        return Util::apiResponse(false,"Guide recovered!",
+        return Util::apiResponse(true,"Guide recovered!",
             $guides, null, EnumResponse::RESPONSE_OK);
     }
 
