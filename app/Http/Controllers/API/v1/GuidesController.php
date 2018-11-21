@@ -52,15 +52,16 @@ class GuidesController extends Controller
     public function favoriteGuide($idGuide){
         $repoGuide = new GuidesRepository(new Guides);
         $guide = $repoGuide->find($idGuide);
-        $user = $guide->whereHas('usersFavorites', function($query){
-            $query->where('guides_favorites.fkUsers', $this->user->id);
-        })->get();
-
         if(!$guide){
             return Util::apiResponse(false,"Guide not encuntered!",
                 null, null, EnumResponse::RESPONSE_NOT_FOUND);
         }
 
+        $user = $guide->whereHas('usersFavorites', function($query) use ($guide){
+            $query->where('guides_favorites.fkUsers', $this->user->id)
+                ->where('guides_favorites.fkGuides', $guide->id);
+        })->get();
+        
         if($user->count() == 0){
             $this->user->guidesFavorites()->save($guide);
         }
