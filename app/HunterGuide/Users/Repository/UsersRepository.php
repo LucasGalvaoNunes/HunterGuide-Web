@@ -78,7 +78,7 @@ class UsersRepository extends BaseRepository implements UsersRepositoryInterface
             $this->model->fill($data);
             if(isset($param['password']))
                 $this->model->password = Hash::make($param['password']);
-            return $this->model->update();
+            return $this->model->save();
         }catch (QueryException $e){
             throw new \Exception($e->getMessage(), 500, $e);
         }
