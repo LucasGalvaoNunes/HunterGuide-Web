@@ -16,3 +16,8 @@ use Illuminate\Foundation\Inspiring;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
+Artisan::command('favorite', function (\App\Http\Controllers\API\v1\GuidesController $guidesController) {
+    $guidesController->favoriteGuide(1);
+
+    $this->comment('Deu bom!');
+});

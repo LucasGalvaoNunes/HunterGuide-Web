@@ -46,10 +46,10 @@ class Users extends Authenticatable
     }
 
     /**
-     * @return GuidesFavorites[]|\Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function guidesFavorites(){
-        return $this->hasMany(GuidesFavorites::class, 'fkUsers', 'id');
+        return $this->belongsToMany(Guides::class, 'guides_favorites','fkUsers', 'fkGuides');
     }
 
     /**

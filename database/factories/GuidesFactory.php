@@ -8,6 +8,7 @@ $factory->define(\App\HunterGuide\Guides\Guides::class, function (Faker $faker) 
     return [
         'fkGames' => $faker->randomElement($games),
         'fkUsers' => $faker->randomElement($users),
+        'pictureLink' => $faker->imageUrl(200,300),
         'visualizations' => 0,
         'title' => $faker->userName,
         'text' => $faker->realText(200)

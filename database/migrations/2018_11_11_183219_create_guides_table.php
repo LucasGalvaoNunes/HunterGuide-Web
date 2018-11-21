@@ -21,6 +21,7 @@ class CreateGuidesTable extends Migration
             $table->foreign('fkGames')->references('id')->on('games')->onDelete('cascade');
             $table->integer('visualizations')->nullable()->comment('Is so much visualization this guide receive!');
             $table->string('title', 100)->nullable();
+            $table->string('pictureLink', 100)->nullable();
             $table->longText('text');
             $table->softDeletes();
             $table->timestamps();

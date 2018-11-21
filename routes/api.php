@@ -64,6 +64,8 @@ Route::namespace('API\v1')->prefix('v1')->name('api.v1.')->group(function(){
     Route::prefix('guides')->group(function () {
         Route::group(['middleware' => 'auth:api'], function () {
             Route::get('guideOfStep/{idStep}', 'GuidesController@guideOfStep');
+            Route::get('saveGuideFavorite/{idGuide}', 'GuidesController@favoriteGuide');
+            Route::get('allFavoritesGuides', 'GuidesController@allFavoritesGuide');
         });
     });
 

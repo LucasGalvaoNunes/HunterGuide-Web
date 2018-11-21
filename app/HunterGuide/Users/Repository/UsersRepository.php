@@ -84,5 +84,4 @@ class UsersRepository extends BaseRepository implements UsersRepositoryInterface
         }
     }
 
-
 }

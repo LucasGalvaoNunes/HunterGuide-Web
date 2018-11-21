@@ -29,6 +29,7 @@ class Guides extends Model
     protected $fillable = [
         'id',
         'fkUsers',
+        'pictureLink',
         'fkGames',
         'visualizations',
         'title',
@@ -48,6 +49,13 @@ class Guides extends Model
      */
     public function users(){
         return $this->belongsTo(Users::class, 'fkUsers');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function usersFavorites(){
+        return $this->belongsToMany(Users::class, 'guides_favorites','fkGuides', 'fkUsers');
     }
 
     /**
