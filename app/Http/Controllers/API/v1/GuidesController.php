@@ -61,7 +61,7 @@ class GuidesController extends Controller
             $query->where('guides_favorites.fkUsers', $this->user->id)
                 ->where('guides_favorites.fkGuides', $guide->id);
         })->get();
-        
+
         if($user->count() == 0){
             $this->user->guidesFavorites()->save($guide);
         }

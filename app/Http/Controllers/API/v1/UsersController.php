@@ -10,9 +10,15 @@ use App\HunterGuide\Users\Requests\UsersCreate;
 use App\HunterGuide\Users\Requests\UsersLogin;
 use App\HunterGuide\Users\Requests\UsersUpdate;
 use App\HunterGuide\Users\Users;
-use Faker\Factory;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Storage;
 
+/**
+ * @property Users user
+ * Class UsersController
+ * @package App\Http\Controllers\API\v1
+ */
 class UsersController extends Controller
 {
     protected $user;
@@ -68,6 +74,34 @@ class UsersController extends Controller
         }catch (\Exception $e){
             return Util::apiResponse(false,
                 "Oops, an error occurred in our server!", null, null, EnumResponse::RESPONSE_INTERNAL_ERROR);
+        }
+    }
+
+    public function saveProfilePicture(Request $request){
+        $base64 = $request->base64;
+        $fileName = "profile-".$this->user->id.".png";
+        try{
+            Storage::disk('public')->put("/photos/profiles/" . $fileName,base64_decode($base64));
+            $this->user->picture = asset("public/photos/profiles/" . $fileName);
+            return Util::apiResponse(true, "User profile picture saved!",
+                null, null, EnumResponse::RESPONSE_OK);
+        }catch (\Exception $e){
+            return Util::apiResponse(true, "Ops a error ucurred!",
+                null, null, EnumResponse::RESPONSE_INTERNAL_ERROR);
+        }
+    }
+
+    public function saveProfileBackgroundPicture(Request $request){
+        $base64 = $request->base64;
+        $fileName = "background-".$this->user->id.".png";
+        try{
+            Storage::disk('public')->put("/photos/background/" . $fileName,base64_decode($base64));
+            $this->user->background = asset("public/photos/background/" . $fileName);
+            return Util::apiResponse(true, "User background picture saved!",
+                null, null, EnumResponse::RESPONSE_OK);
+        }catch (\Exception $e){
+            return Util::apiResponse(true, "Ops a error ucurred!",
+                null, null, EnumResponse::RESPONSE_INTERNAL_ERROR);
         }
     }
 }

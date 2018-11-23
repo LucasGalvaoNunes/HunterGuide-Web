@@ -188,6 +188,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Jsdecena\Baserepo\BaseRepositoryProvider::class,
         Nasyrov\Laravel\Enums\EnumServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -237,7 +238,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Image' => Intervention\Image\Facades\Image::class,
 
         'Util' => App\HunterGuide\Helpers\Facades\Util::class,
     ],

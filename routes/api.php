@@ -34,6 +34,9 @@ Route::namespace('API\v1')->prefix('v1')->name('api.v1.')->group(function(){
         Route::group(['middleware' => 'auth:api'], function () {
             Route::get('profile', 'UsersController@profile');
             Route::post('update', 'UsersController@update');
+
+            Route::post('updateProfileBackgroundPicture', 'UsersController@saveProfileBackgroundPicture');
+            Route::post('updateProfilePicture', 'UsersController@saveProfilePicture');
         });
     });
 

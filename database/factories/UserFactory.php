@@ -16,6 +16,8 @@ use Faker\Generator as Faker;
 $factory->define(\App\HunterGuide\Users\Users::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
+        'picture' => $faker->imageUrl(200,300),
+        'background' => $faker->imageUrl(200,300),
         'lastName' => $faker->lastName,
         'aboutMe' => $faker->text(30),
         'userName' => $faker->userName,
