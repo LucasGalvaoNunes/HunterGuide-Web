@@ -78,6 +78,7 @@ class UsersController extends Controller
     }
 
     public function saveProfilePicture(Request $request){
+        dd($request->all());
         $base64 = $request->base64;
         $fileName = "profile-".$this->user->id.".png";
         try{
