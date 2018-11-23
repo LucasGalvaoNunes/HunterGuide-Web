@@ -81,8 +81,8 @@ class UsersController extends Controller
         $base64 = $request->base64;
         $fileName = "profile-".$this->user->id.".png";
         try{
-            Storage::disk('public')->put("/photos/profiles/" . $fileName,base64_decode($base64));
-            $this->user->picture = asset("public/photos/profiles/" . $fileName);
+            Storage::disk('public')->put($fileName,base64_decode($base64));
+            $this->user->picture = asset("storage/" . $fileName);
             $this->user->save();
             return Util::apiResponse(true, "User profile picture saved!",
                 null, null, EnumResponse::RESPONSE_OK);
@@ -94,10 +94,10 @@ class UsersController extends Controller
 
     public function saveProfileBackgroundPicture(Request $request){
         $base64 = $request->base64;
-        $fileName = "background-".$this->user->id.".png";
+        $fileName = "background-".$this->user->id.".jpeg";
         try{
-            Storage::disk('public')->put("/photos/background/" . $fileName,base64_decode($base64));
-            $this->user->background = asset("public/photos/background/" . $fileName);
+            Storage::disk('public')->put($fileName,base64_decode($base64));
+            $this->user->background = asset("storage/" . $fileName);
             $this->user->save();
             return Util::apiResponse(true, "User background picture saved!",
                 null, null, EnumResponse::RESPONSE_OK);
