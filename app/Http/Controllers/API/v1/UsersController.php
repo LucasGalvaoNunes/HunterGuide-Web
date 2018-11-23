@@ -83,6 +83,7 @@ class UsersController extends Controller
         try{
             Storage::disk('public')->put("/photos/profiles/" . $fileName,base64_decode($base64));
             $this->user->picture = asset("public/photos/profiles/" . $fileName);
+            $this->user->save();
             return Util::apiResponse(true, "User profile picture saved!",
                 null, null, EnumResponse::RESPONSE_OK);
         }catch (\Exception $e){
@@ -97,6 +98,7 @@ class UsersController extends Controller
         try{
             Storage::disk('public')->put("/photos/background/" . $fileName,base64_decode($base64));
             $this->user->background = asset("public/photos/background/" . $fileName);
+            $this->user->save();
             return Util::apiResponse(true, "User background picture saved!",
                 null, null, EnumResponse::RESPONSE_OK);
         }catch (\Exception $e){
