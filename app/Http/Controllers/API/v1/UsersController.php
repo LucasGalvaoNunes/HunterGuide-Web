@@ -10,8 +10,8 @@ use App\HunterGuide\Users\Requests\UsersCreate;
 use App\HunterGuide\Users\Requests\UsersLogin;
 use App\HunterGuide\Users\Requests\UsersUpdate;
 use App\HunterGuide\Users\Users;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -78,7 +78,6 @@ class UsersController extends Controller
     }
 
     public function saveProfilePicture(Request $request){
-        dd($request->all());
         $base64 = $request->base64;
         $fileName = "profile-".$this->user->id.".png";
         try{
